@@ -6,6 +6,7 @@ from d2l import torch as d2l
 import sys
 import os
 
+# 导入83.py
 sys.path.append(os.path.dirname(__file__))
 import importlib.util
 spec = importlib.util.spec_from_file_location("ch83", os.path.join(os.path.dirname(__file__), "83.py"))
@@ -79,6 +80,7 @@ print(Y.shape, len(new_state), new_state[0].shape)
 
 def predict_ch8(prefix, num_preds, net, vocab, device): #@save
     """在prefix后面生成新字符"""
+    print(f"ch85 运行predict:\n")
     state = net.begin_state(batch_size=1, device=device)
     outputs = [vocab[prefix[0]]]
     get_input = lambda: torch.tensor([outputs[-1]], device=device).reshape((1, 1))
@@ -144,6 +146,7 @@ def train_epoch_ch8(net, train_iter, loss, updater, device, use_random_iter):
 
 def train_ch8(net, train_iter, vocab, lr, num_epochs, device, use_random_iter=False):
     """训练模型（定义见第8章）"""
+    print(f"ch85 运行train:\n")
     loss = nn.CrossEntropyLoss()
     animator = d2l.Animator(xlabel='epoch', ylabel='perplexity', legend=['train'], xlim=[10, num_epochs])
 
